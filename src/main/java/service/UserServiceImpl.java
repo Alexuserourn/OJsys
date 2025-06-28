@@ -29,19 +29,24 @@ public class UserServiceImpl implements UserService {
             return null;
         }
         
-        User user = userDao.selectByUsername(username);
-        if (user == null) {
-            logger.warn("登录失败：用户 {} 不存在", username);
+        try {
+            User user = userDao.selectByUsername(username);
+            if (user == null) {
+                logger.warn("登录失败：用户 {} 不存在", username);
+                return null;
+            }
+            
+            if (!password.equals(user.getPassword())) {
+                logger.warn("登录失败：用户 {} 密码错误", username);
+                return null;
+            }
+            
+            logger.info("用户 {} 登录成功", username);
+            return user;
+        } catch (Exception e) {
+            logger.error("登录过程中发生异常: {}", e.getMessage(), e);
             return null;
         }
-        
-        if (!password.equals(user.getPassword())) {
-            logger.warn("登录失败：用户 {} 密码错误", username);
-            return null;
-        }
-        
-        logger.info("用户 {} 登录成功", username);
-        return user;
     }
 
     @Override

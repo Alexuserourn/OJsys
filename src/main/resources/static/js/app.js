@@ -52,6 +52,8 @@ function loadProblemList() {
     document.getElementById('problemDetail').style.display = 'none';
     document.getElementById('problemForm').style.display = 'none';
     document.getElementById('userManagement').style.display = 'none';
+    document.getElementById('submissionHistory').style.display = 'none';
+    document.getElementById('problemStats').style.display = 'none';
     
     fetch('/problem')
         .then(response => response.json())
@@ -143,6 +145,8 @@ function loadProblemDetail(id) {
             document.getElementById('problemDetail').style.display = 'block';
             document.getElementById('problemForm').style.display = 'none';
             document.getElementById('userManagement').style.display = 'none';
+            document.getElementById('submissionHistory').style.display = 'none';
+            document.getElementById('problemStats').style.display = 'none';
             
             // 更新题目信息
             document.getElementById('problemTitle').textContent = problem.title || '';
@@ -214,6 +218,8 @@ function showProblemForm() {
     document.getElementById('problemDetail').style.display = 'none';
     document.getElementById('problemForm').style.display = 'block';
     document.getElementById('userManagement').style.display = 'none';
+    document.getElementById('submissionHistory').style.display = 'none';
+    document.getElementById('problemStats').style.display = 'none';
     
     // 重置表单
     document.getElementById('addProblemForm').reset();
@@ -222,6 +228,188 @@ function showProblemForm() {
 // 显示题目列表
 function showProblemList() {
     loadProblemList();
+}
+
+// 显示学生做题记录
+function showSubmissionHistory() {
+    document.getElementById('problemList').style.display = 'none';
+    document.getElementById('problemDetail').style.display = 'none';
+    document.getElementById('problemForm').style.display = 'none';
+    document.getElementById('userManagement').style.display = 'none';
+    document.getElementById('submissionHistory').style.display = 'block';
+    document.getElementById('problemStats').style.display = 'none';
+    
+    loadSubmissionHistory();
+}
+
+// 显示题目统计信息
+function showProblemStats() {
+    document.getElementById('problemList').style.display = 'none';
+    document.getElementById('problemDetail').style.display = 'none';
+    document.getElementById('problemForm').style.display = 'none';
+    document.getElementById('userManagement').style.display = 'none';
+    document.getElementById('submissionHistory').style.display = 'none';
+    document.getElementById('problemStats').style.display = 'block';
+    
+    loadProblemStats();
+}
+
+// 加载学生做题记录
+function loadSubmissionHistory() {
+    fetch('/submission/user')
+        .then(response => {
+            if (!response.ok) {
+                if (response.status === 401) {
+                    showMessage('error', '请先登录');
+                    return null;
+                }
+                throw new Error('获取做题记录失败，服务器返回: ' + response.status);
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (!data) return;
+            
+            if (data.ok !== 1) {
+                showMessage('error', data.reason || '获取做题记录失败');
+                return;
+            }
+            
+            const tableBody = document.getElementById('submissionTable');
+            tableBody.innerHTML = '';
+            
+            if (!data.submissions || data.submissions.length === 0) {
+                const row = document.createElement('tr');
+                const cell = document.createElement('td');
+                cell.colSpan = 4;
+                cell.textContent = '暂无做题记录';
+                cell.className = 'text-center';
+                row.appendChild(cell);
+                tableBody.appendChild(row);
+                return;
+            }
+            
+            data.submissions.forEach(submission => {
+                const row = document.createElement('tr');
+                
+                const titleCell = document.createElement('td');
+                titleCell.textContent = submission.problemTitle || '未知题目';
+                
+                const resultCell = document.createElement('td');
+                if (submission.result === 1) {
+                    resultCell.innerHTML = '<span class="badge badge-success">通过</span>';
+                } else {
+                    resultCell.innerHTML = '<span class="badge badge-danger">未通过</span>';
+                }
+                
+                const timeCell = document.createElement('td');
+                timeCell.textContent = new Date(submission.submitTime).toLocaleString();
+                
+                const actionCell = document.createElement('td');
+                const viewBtn = document.createElement('button');
+                viewBtn.className = 'btn btn-sm btn-view';
+                viewBtn.textContent = '查看代码';
+                viewBtn.addEventListener('click', function() {
+                    viewSubmittedCode(submission.code);
+                });
+                actionCell.appendChild(viewBtn);
+                
+                row.appendChild(titleCell);
+                row.appendChild(resultCell);
+                row.appendChild(timeCell);
+                row.appendChild(actionCell);
+                
+                tableBody.appendChild(row);
+            });
+        })
+        .catch(error => {
+            console.error('获取做题记录失败:', error);
+            showMessage('error', '获取做题记录失败: ' + error.message);
+        });
+}
+
+// 加载题目统计信息
+function loadProblemStats() {
+    fetch('/submission/stats')
+        .then(response => {
+            if (!response.ok) {
+                if (response.status === 401) {
+                    showMessage('error', '请先登录');
+                    return null;
+                }
+                if (response.status === 403) {
+                    showMessage('error', '权限不足');
+                    return null;
+                }
+                throw new Error('获取题目统计信息失败，服务器返回: ' + response.status);
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (!data) return;
+            
+            if (data.ok !== 1) {
+                showMessage('error', data.reason || '获取题目统计信息失败');
+                return;
+            }
+            
+            const tableBody = document.getElementById('statsTable');
+            tableBody.innerHTML = '';
+            
+            if (!data.statsList || data.statsList.length === 0) {
+                const row = document.createElement('tr');
+                const cell = document.createElement('td');
+                cell.colSpan = 4;
+                cell.textContent = '暂无统计数据';
+                cell.className = 'text-center';
+                row.appendChild(cell);
+                tableBody.appendChild(row);
+                return;
+            }
+            
+            data.statsList.forEach(stats => {
+                const row = document.createElement('tr');
+                
+                const idCell = document.createElement('td');
+                idCell.textContent = stats.id;
+                
+                const titleCell = document.createElement('td');
+                titleCell.textContent = stats.title;
+                
+                const submissionsCell = document.createElement('td');
+                submissionsCell.textContent = stats.totalSubmissions;
+                
+                const rateCell = document.createElement('td');
+                const rate = stats.successRate || 0;
+                rateCell.textContent = rate.toFixed(2) + '%';
+                
+                // 根据正确率设置颜色
+                if (rate >= 80) {
+                    rateCell.className = 'text-success';
+                } else if (rate >= 50) {
+                    rateCell.className = 'text-warning';
+                } else {
+                    rateCell.className = 'text-danger';
+                }
+                
+                row.appendChild(idCell);
+                row.appendChild(titleCell);
+                row.appendChild(submissionsCell);
+                row.appendChild(rateCell);
+                
+                tableBody.appendChild(row);
+            });
+        })
+        .catch(error => {
+            console.error('获取题目统计信息失败:', error);
+            showMessage('error', '获取题目统计信息失败: ' + error.message);
+        });
+}
+
+// 查看提交的代码
+function viewSubmittedCode(code) {
+    document.getElementById('submittedCode').textContent = code;
+    $('#codeModal').modal('show');
 }
 
 // 添加新题目（仅教师可用）
@@ -455,6 +643,8 @@ function showUserManagement() {
     document.getElementById('problemDetail').style.display = 'none';
     document.getElementById('problemForm').style.display = 'none';
     document.getElementById('userManagement').style.display = 'block';
+    document.getElementById('submissionHistory').style.display = 'none';
+    document.getElementById('problemStats').style.display = 'none';
     
     loadUserList();
 }

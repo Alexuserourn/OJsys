@@ -4,6 +4,7 @@ CREATE DATABASE IF NOT EXISTS java41_oj;
 USE java41_oj;
 
 -- 删除已存在的表
+DROP TABLE IF EXISTS submission;
 DROP TABLE IF EXISTS user;
 DROP TABLE IF EXISTS oj_table;
 
@@ -30,4 +31,14 @@ CREATE TABLE oj_table (
     testCode TEXT NOT NULL
 );
 
-
+-- 创建提交记录表
+CREATE TABLE submission (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    problem_id INT NOT NULL,
+    code TEXT NOT NULL,
+    result TINYINT NOT NULL, -- 0: 失败, 1: 成功
+    submit_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES user(id),
+    FOREIGN KEY (problem_id) REFERENCES oj_table(id)
+);

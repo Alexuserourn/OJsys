@@ -54,10 +54,14 @@ function updateUIAfterLogin(user) {
     
     // 根据用户角色显示或隐藏管理功能
     const adminControls = document.querySelectorAll('.admin-only');
+    const studentControls = document.querySelectorAll('.student-only');
+    
     if (user.role === 'teacher') {
         adminControls.forEach(el => el.style.display = 'block');
+        studentControls.forEach(el => el.style.display = 'none');
     } else {
         adminControls.forEach(el => el.style.display = 'none');
+        studentControls.forEach(el => el.style.display = 'block');
     }
     
     // 显示题目列表或其他内容
@@ -80,6 +84,14 @@ function login() {
         return;
     }
     
+    // 显示加载中的消息
+    showMessage('info', '登录中，请稍候...');
+    
+    // 设置超时处理
+    const loginTimeout = setTimeout(() => {
+        showMessage('error', '登录请求超时，请重试');
+    }, 10000); // 10秒超时
+    
     fetch('/user/login', {
         method: 'POST',
         headers: {
@@ -87,7 +99,10 @@ function login() {
         },
         body: JSON.stringify({ username, password })
     })
-    .then(response => response.json())
+    .then(response => {
+        clearTimeout(loginTimeout);
+        return response.json();
+    })
     .then(data => {
         if (data.success) {
             showMessage('success', '登录成功');
@@ -99,8 +114,9 @@ function login() {
         }
     })
     .catch(error => {
+        clearTimeout(loginTimeout);
         console.error('登录出错:', error);
-        showMessage('error', '登录请求出错');
+        showMessage('error', '登录请求出错，请稍后重试');
     });
 }
 

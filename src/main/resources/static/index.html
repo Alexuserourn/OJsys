@@ -207,17 +207,23 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#" onclick="showProblemList()">题目列表</a>
-            </li>
-            <li class="nav-item admin-only" style="display: none;">
-                <a class="nav-link" href="#" onclick="showProblemForm()">添加题目</a>
-            </li>
-            <li class="nav-item admin-only" style="display: none;">
-                <a class="nav-link" href="#" onclick="showUserManagement()">用户管理</a>
-            </li>
-        </ul>
+                    <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#" onclick="showProblemList()">题目列表</a>
+                </li>
+                <li class="nav-item admin-only" style="display: none;">
+                    <a class="nav-link" href="#" onclick="showProblemForm()">添加题目</a>
+                </li>
+                <li class="nav-item admin-only" style="display: none;">
+                    <a class="nav-link" href="#" onclick="showUserManagement()">用户管理</a>
+                </li>
+                <li class="nav-item admin-only" style="display: none;">
+                    <a class="nav-link" href="#" onclick="showProblemStats()">题目统计</a>
+                </li>
+                <li class="nav-item student-only" style="display: none;">
+                    <a class="nav-link" href="#" onclick="showSubmissionHistory()">做题记录</a>
+                </li>
+            </ul>
         <!-- 用户信息区域 -->
         <div id="userInfo" class="navbar-text" style="display: none;color: white;">
             欢迎，<span id="username"></span>(<span id="userRole"></span>)
@@ -461,6 +467,70 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
                 <button type="button" class="btn btn-primary" onclick="updateUser()">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 学生做题记录界面 -->
+<div id="submissionHistory" class="container mt-4" style="display: none;">
+    <h2>我的做题记录</h2>
+    <div class="card">
+        <div class="card-body">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>题目</th>
+                        <th>结果</th>
+                        <th>提交时间</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody id="submissionTable">
+                    <!-- 提交记录将在这里动态加载 -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- 题目统计界面 -->
+<div id="problemStats" class="container mt-4" style="display: none;">
+    <h2>题目统计</h2>
+    <div class="card">
+        <div class="card-body">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>题目</th>
+                        <th>提交次数</th>
+                        <th>正确率</th>
+                    </tr>
+                </thead>
+                <tbody id="statsTable">
+                    <!-- 统计数据将在这里动态加载 -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- 提交代码查看模态框 -->
+<div class="modal fade" id="codeModal" tabindex="-1" aria-labelledby="codeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="codeModalLabel">提交代码</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <pre id="submittedCode" class="border p-3" style="max-height: 400px; overflow-y: auto;"></pre>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
             </div>
         </div>
     </div>
