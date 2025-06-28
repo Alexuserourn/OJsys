@@ -1,0 +1,5 @@
+.\tmp\0c7ed117-a36b-47eb-8911-1a80bc63521e\Solution.java:7: 错误: 内部类Solution.Test中的静态声明非法
+    public static void main(String[] args) {
+                       ^
+  修饰符 'static' 仅允许在常量变量声明中使用
+1 个错误

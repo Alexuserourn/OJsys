@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>在线 OJ 系统</title>
+    <meta name="description" content="在线编程练习系统" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+    <!--Bootstrap 4-->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+        .title-highlight {
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+        .subtitle-highlight {
+            color: rgba(255,255,255,0.9);
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+        .bg-hero {
+            background: linear-gradient(45deg, #6b5b95, #45b7af);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        .sticky-navigation {
+            transition: all 0.4s;
+            background: transparent !important;
+            backdrop-filter: blur(10px);
+        }
+        .sticky-navigation.scrolled {
+            background: linear-gradient(45deg, #6b5b95, #45b7af) !important;
+        }
+        .content-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+        .problem-list {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-top: 20px;
+            color: #000000 !important;
+        }
+        .problem-list h3,
+        .problem-detail h3 {
+            color: #000000 !important;
+            font-weight: 600;
+        }
+        .problem-list table,
+        .problem-list th,
+        .problem-list td {
+            color: #000000 !important;
+        }
+        .problem-detail {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-top: 20px;
+            color: #000000 !important;
+        }
+        .problem-detail pre {
+            color: #000000 !important;
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .problem-detail .text-muted {
+            color: #666666 !important;
+        }
+        #editor {
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 1px solid #ddd;
+        }
+        .table {
+            margin-bottom: 0;
+        }
+        .table tr:hover {
+            cursor: pointer;
+            background-color: rgba(107, 91, 149, 0.1) !important;
+        }
+        .text-muted {
+            color: #666666 !important;
+        }
+    </style>
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-md navbar-dark fixed-top sticky-navigation">
+    <a class="navbar-brand" href="#">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAB1klEQVR4AcXBgY3bMBAEwJn7r0R1qA7UgerQdagO7Q7cgfTZ4OFIipTk/P35+XYzWytss6UJ22yJjDXYZksTttlSYa0VJjcxucnk5t7fnz8PtlTYZkuFyU0mNzG5uc2WyFgr3GZLhW22VFhrhe8fHw+2RMZa4TZbImOtcJstFSY3mdx8sa0VbotE2GZLZKwVbrOlwjZbKmy3pcLkJpObL7a1wm2RCNtsqbDWCrfZUmFyE5ObX9hmS4VttkTGWuGvyU0mN19sa4XbIhG22VJhrRVusyUy1gq32VJhmy0VttkSGWuF22ypsM2WCttsqbDNlgrbbKmwzZbIWCvcZktk/Pr9MbnJ5OaLba1wWyTCNlsqTG4yufnCNlsqbLMlMtYKt0UibLOlwuQmk5svbLOlwjZbKmy3pcI2WyJjrXBbJMI2WypMbjK5+cI2WypstyUy1gq3RSL8B5kPbqN6WpZkAAAAAElFTkSuQmCC" width="30" height="30" class="d-inline-block align-top" alt="">
+        OJ系统
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#topMenu"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="topMenu">
+
+    </div>
+</nav>
+
+<!--hero section-->
+<section class="bg-hero">
+    <div class="container">
+        <div class="row vh-100">
+            <div class="col-sm-12 my-auto text-center">
+                <h1 class="title-highlight">在线 OJ 系统</h1>
+                <p class="lead text-capitalize my-4 subtitle-highlight">
+                    基于 Java 实现的在线 OJ 系统
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--components-->
+<section class="my-5 pt-5" id="app">
+    <div class="content-container">
+        <!-- 表示题目列表页 -->
+        <div class="problem-list" v-show="status=='list'">
+            <h3>题目列表</h3>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>标题</th>
+                    <th>难度</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="problem in problems" v-on:click="getProblem(problem.id)">
+                    <td>{{problem.id}}</td>
+                    <td>{{problem.title}}</td>
+                    <td>{{problem.level}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- 表示题目详情页 -->
+        <div class="problem-detail" v-show="status=='detail'">
+            <h3>{{problem.id}}. {{problem.title}} <small class="text-muted">({{problem.level}})</small></h3>
+            <pre class="mt-4">{{problem.description}}</pre>
+            <div id="editor" style="min-height:400px;"></div>
+            <button type="button" class="btn btn-primary" v-on:click="compile(problem.id)">提交答案</button>
+        </div>
+    </div>
+</section>
+
+<!--footer-->
+<section class="py-5 bg-dark">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3 col-sm-8 offset-sm-2 col-xs-12 text-center">
+                <!-- <h3>Upgrade to Pro Version</h3>
+                    <p class="pt-2">
+                        We are working on <b>Charcoal Pro</b> which will be released soon. The pro version
+                        will have a lot more components, sections, icons, plugins and example pages.
+                        Join the waiting list to get notified when we release it (plus discount code).
+                    </p>
+                    <a class="btn btn-warning" href="https://wireddots.com/newsletter">Join Waiting List</a>
+                    <hr class="my-5"/> -->
+                <p class="pt-2 text-muted">
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 核心依赖库 -->
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/popper.js/2.9.3/umd/popper.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.14/vue.min.js"></script>
+
+<!-- 代码编辑器 -->
+<script src="https://cdn.bootcdn.net/ajax/libs/ace/1.4.12/ace.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/ace/1.4.12/theme-monokai.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/ace/1.4.12/mode-java.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/ace/1.4.12/ext-language_tools.min.js"></script>
+
+<!-- 应用代码 -->
+<script src="js/app.js"></script>
+
+<script>
+    // 初始化Vue应用
+    var app = new Vue({
+        el: '#app',
+        data: {
+            status: 'list',  // 'list' 题目列表 'detail' 题目详情
+            problems: [],
+            problem: {}
+        },
+        mounted: function() {
+            this.getProblems();
+        },
+        methods: {
+            getProblems() {
+                $.ajax({
+                    url: 'problem',
+                    type: 'get',
+                    success: (data, status) => {
+                        this.problems = data;
+                    },
+                    error: (xhr, status, error) => {
+                        console.error('获取题目列表失败:', error);
+                        alert('获取题目列表失败，请检查服务器状态');
+                    }
+                });
+            },
+            getProblem(problemId) {
+                $.ajax({
+                    url: 'problem?id=' + problemId,
+                    type: 'get',
+                    success: (data, status) => {
+                        this.problem = data;
+                        this.status = 'detail';
+                        if(window.editor) {
+                            editor.setValue(data.templateCode || '');
+                        }
+                    },
+                    error: (xhr, status, error) => {
+                        console.error('获取题目详情失败:', error);
+                        alert('获取题目详情失败，请检查服务器状态');
+                    }
+                });
+            },
+            compile(problemId) {
+                var question = {
+                    id: problemId,
+                    code: window.editor ? editor.getValue() : ''
+                };
+                $.ajax({
+                    url: 'compile',
+                    type: 'post',
+                    contentType: 'application/json; charset=utf-8',
+                    data: JSON.stringify(question),
+                    success: function(data, status) {
+                        var msg = data.errno + "\n";
+                        if (data.reason) {
+                            msg += data.reason;
+                        }
+                        if (data.stdout) {
+                            msg += data.stdout;
+                        }
+                        alert(msg);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('编译失败:', error);
+                        alert('编译失败，请检查服务器状态');
+                    }
+                });
+            }
+        }
+    });
+
+    // 初始化代码编辑器
+    ace.config.set('basePath', 'https://cdn.bootcdn.net/ajax/libs/ace/1.4.12/');
+    let editor = ace.edit("editor");
+    editor.setOptions({
+        enableBasicAutocompletion: true,
+        enableSnippets: true,
+        enableLiveAutocompletion: true
+    });
+    editor.setTheme("ace/theme/monokai");
+    editor.session.setMode("ace/mode/java");
+    editor.resize();
+    document.getElementById('editor').style.fontSize = '20px';
+</script>
+</body>
+
+</html>

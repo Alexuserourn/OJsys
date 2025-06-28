@@ -1,0 +1,22 @@
+.\tmp\6ebb9c6d-e2c7-4f27-bbed-1186bbeba5be\Test.java:5: 错误: 需要';'
+int trap(int* height, int heightSize) {
+        ^
+.\tmp\6ebb9c6d-e2c7-4f27-bbed-1186bbeba5be\Test.java:5: 错误: 不是语句
+int trap(int* height, int heightSize) {
+         ^
+.\tmp\6ebb9c6d-e2c7-4f27-bbed-1186bbeba5be\Test.java:5: 错误: 需要';'
+int trap(int* height, int heightSize) {
+            ^
+.\tmp\6ebb9c6d-e2c7-4f27-bbed-1186bbeba5be\Test.java:5: 错误: 不是语句
+int trap(int* height, int heightSize) {
+              ^
+.\tmp\6ebb9c6d-e2c7-4f27-bbed-1186bbeba5be\Test.java:5: 错误: 需要';'
+int trap(int* height, int heightSize) {
+                    ^
+.\tmp\6ebb9c6d-e2c7-4f27-bbed-1186bbeba5be\Test.java:5: 错误: 需要';'
+int trap(int* height, int heightSize) {
+                                    ^
+.\tmp\6ebb9c6d-e2c7-4f27-bbed-1186bbeba5be\Test.java:31: 错误: 需要';'
+int main() {
+        ^
+7 个错误

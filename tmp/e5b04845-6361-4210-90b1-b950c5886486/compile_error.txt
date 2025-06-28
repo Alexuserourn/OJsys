@@ -1,0 +1,127 @@
+.\tmp\e5b04845-6361-4210-90b1-b950c5886486\Test.java:5: 错误: 需要<标识符>
+int trap(int* height, int heightSize) {
+            ^
+.\tmp\e5b04845-6361-4210-90b1-b950c5886486\Test.java:5: 错误: 需要';'
+int trap(int* height, int heightSize) {
+             ^
+.\tmp\e5b04845-6361-4210-90b1-b950c5886486\Test.java:5: 错误: 非法的类型开始
+int trap(int* height, int heightSize) {
+                    ^
+.\tmp\e5b04845-6361-4210-90b1-b950c5886486\Test.java:5: 错误: 需要<标识符>
+int trap(int* height, int heightSize) {
+                     ^
+.\tmp\e5b04845-6361-4210-90b1-b950c5886486\Test.java:5: 错误: 需要';'
+int trap(int* height, int heightSize) {
+                         ^
+.\tmp\e5b04845-6361-4210-90b1-b950c5886486\Test.java:5: 错误: 非法的类型开始
+int trap(int* height, int heightSize) {
+                                    ^
+.\tmp\e5b04845-6361-4210-90b1-b950c5886486\Test.java:5: 错误: 需要<标识符>
+int trap(int* height, int heightSize) {
+                                     ^
+.\tmp\e5b04845-6361-4210-90b1-b950c5886486\Test.java:5: 错误: 需要';'
+int trap(int* height, int heightSize) {
+                                       ^
+.\tmp\e5b04845-6361-4210-90b1-b950c5886486\Test.java:6: 错误: 非法的类型开始
+    if (heightSize == 0) return 0;
+       ^
+.\tmp\e5b04845-6361-4210-90b1-b950c5886486\Test.java:6: 错误: 需要';'
+    if (heightSize == 0) return 0;
+                  ^
+.\tmp\e5b04845-6361-4210-90b1-b950c5886486\Test.java:11: 错误: 非法的类型开始
+    while (left < right) {
+    ^
+.\tmp\e5b04845-6361-4210-90b1-b950c5886486\Test.java:11: 错误: 需要>
+    while (left < right) {
+                       ^
+.\tmp\e5b04845-6361-4210-90b1-b950c5886486\Test.java:11: 错误: 需要')'
+    while (left < right) {
+                        ^
+.\tmp\e5b04845-6361-4210-90b1-b950c5886486\Test.java:11: 错误: 需要';'
+    while (left < right) {
+                          ^
+.\tmp\e5b04845-6361-4210-90b1-b950c5886486\Test.java:12: 错误: 非法的类型开始
+        if (height[left] < height[right]) {
+           ^
+.\tmp\e5b04845-6361-4210-90b1-b950c5886486\Test.java:12: 错误: 需要']'
+        if (height[left] < height[right]) {
+                   ^
+.\tmp\e5b04845-6361-4210-90b1-b950c5886486\Test.java:12: 错误: 非法的类型开始
+        if (height[left] < height[right]) {
+                       ^
+.\tmp\e5b04845-6361-4210-90b1-b950c5886486\Test.java:12: 错误: 需要<标识符>
+        if (height[left] < height[right]) {
+                        ^
+.\tmp\e5b04845-6361-4210-90b1-b950c5886486\Test.java:12: 错误: 需要';'
+        if (height[left] < height[right]) {
+                          ^
+.\tmp\e5b04845-6361-4210-90b1-b950c5886486\Test.java:12: 错误: 非法的类型开始
+        if (height[left] < height[right]) {
+                                 ^
+.\tmp\e5b04845-6361-4210-90b1-b950c5886486\Test.java:12: 错误: 需要';'
+        if (height[left] < height[right]) {
+                                       ^
+.\tmp\e5b04845-6361-4210-90b1-b950c5886486\Test.java:19: 错误: 非法的类型开始
+        } else {
+          ^
+.\tmp\e5b04845-6361-4210-90b1-b950c5886486\Test.java:19: 错误: 需要';'
+        } else {
+              ^
+.\tmp\e5b04845-6361-4210-90b1-b950c5886486\Test.java:20: 错误: 非法的类型开始
+            if (height[right] >= right_max) {
+            ^
+.\tmp\e5b04845-6361-4210-90b1-b950c5886486\Test.java:20: 错误: 需要<标识符>
+            if (height[right] >= right_max) {
+              ^
+.\tmp\e5b04845-6361-4210-90b1-b950c5886486\Test.java:20: 错误: 需要';'
+            if (height[right] >= right_max) {
+                ^
+.\tmp\e5b04845-6361-4210-90b1-b950c5886486\Test.java:20: 错误: 非法的类型开始
+            if (height[right] >= right_max) {
+                      ^
+.\tmp\e5b04845-6361-4210-90b1-b950c5886486\Test.java:20: 错误: 需要';'
+            if (height[right] >= right_max) {
+                            ^
+.\tmp\e5b04845-6361-4210-90b1-b950c5886486\Test.java:20: 错误: 需要<标识符>
+            if (height[right] >= right_max) {
+                                          ^
+.\tmp\e5b04845-6361-4210-90b1-b950c5886486\Test.java:22: 错误: 非法的类型开始
+            } else {
+              ^
+.\tmp\e5b04845-6361-4210-90b1-b950c5886486\Test.java:22: 错误: 需要';'
+            } else {
+                  ^
+.\tmp\e5b04845-6361-4210-90b1-b950c5886486\Test.java:23: 错误: 需要<标识符>
+                ans += right_max - height[right];
+                                                ^
+.\tmp\e5b04845-6361-4210-90b1-b950c5886486\Test.java:25: 错误: 需要class, interface或enum
+            right--;
+            ^
+.\tmp\e5b04845-6361-4210-90b1-b950c5886486\Test.java:26: 错误: 需要class, interface或enum
+        }
+        ^
+.\tmp\e5b04845-6361-4210-90b1-b950c5886486\Test.java:29: 错误: 需要class, interface或enum
+}
+^
+.\tmp\e5b04845-6361-4210-90b1-b950c5886486\Test.java:33: 错误: 需要class, interface或enum
+    int heightSize1 = sizeof(height1) / sizeof(height1[0]);
+    ^
+.\tmp\e5b04845-6361-4210-90b1-b950c5886486\Test.java:34: 错误: 需要class, interface或enum
+    printf("示例 1 结果: %d\n", trap(height1, heightSize1));
+    ^
+.\tmp\e5b04845-6361-4210-90b1-b950c5886486\Test.java:36: 错误: 需要class, interface或enum
+    int height2[] = {4,2,0,3,2,5};
+    ^
+.\tmp\e5b04845-6361-4210-90b1-b950c5886486\Test.java:37: 错误: 需要class, interface或enum
+    int heightSize2 = sizeof(height2) / sizeof(height2[0]);
+    ^
+.\tmp\e5b04845-6361-4210-90b1-b950c5886486\Test.java:38: 错误: 需要class, interface或enum
+    printf("示例 2 结果: %d\n", trap(height2, heightSize2));
+    ^
+.\tmp\e5b04845-6361-4210-90b1-b950c5886486\Test.java:40: 错误: 需要class, interface或enum
+    return 0;
+    ^
+.\tmp\e5b04845-6361-4210-90b1-b950c5886486\Test.java:41: 错误: 需要class, interface或enum
+}    
+^
+42 个错误

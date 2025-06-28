@@ -1,0 +1,260 @@
+/* 全局样式 */
+body {
+    font-family: "Microsoft YaHei", "Segoe UI", Arial, sans-serif;
+    background-color: #ffffff !important;
+    color: #212529 !important;
+}
+
+/* 覆盖bootstrap深色背景 */
+body, html, .container, .container-fluid, .row, .col, .card, .card-body {
+    background-color: #ffffff !important;
+}
+
+/* 警告框样式 */
+#alertBox {
+    position: fixed;
+    top: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1050;
+    width: 80%;
+    max-width: 500px;
+}
+
+/* 问题描述样式 */
+.problem-description {
+    white-space: pre-line;
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+/* 代码编辑器样式 */
+#codeEditor {
+    font-family: Consolas, Monaco, 'Andale Mono', monospace;
+    font-size: 14px;
+}
+
+/* 编译结果样式 */
+#compileResult {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    max-height: 400px;
+    overflow-y: auto;
+    font-family: Consolas, Monaco, 'Andale Mono', monospace;
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    color: #212529 !important;
+}
+
+/* 登录/注册表单样式 */
+#loginContainer {
+    animation: fadeIn 0.5s;
+}
+
+/* 登录/注册标签切换 */
+.nav-tabs .nav-link {
+    cursor: pointer;
+}
+
+/* 题目列表样式 */
+#problemList {
+    animation: fadeIn 0.5s;
+}
+
+/* 题目详情样式 */
+#problemDetail {
+    animation: fadeIn 0.5s;
+}
+
+/* 用户管理样式 */
+#userManagement {
+    animation: fadeIn 0.5s;
+}
+
+/* 渐入动画 */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* 统一深色系按钮和标签样式 */
+.btn-primary, .btn-success, .btn-danger, .btn-view, .btn-edit, .btn-delete, 
+.btn-submit, .badge-info, .btn-back, .btn-submit-code, .btn-add-user,
+.btn-secondary, a.btn-secondary {
+    background-color: #2c3e50 !important;
+    color: white !important;
+    border: none !important;
+    transition: all 0.3s ease;
+}
+
+/* 按钮悬停效果 */
+.btn-primary:hover, .btn-success:hover, .btn-danger:hover, .btn-view:hover, 
+.btn-edit:hover, .btn-delete:hover, .btn-submit:hover, .btn-back:hover, 
+.btn-submit-code:hover, .btn-add-user:hover, .btn-secondary:hover,
+a.btn-secondary:hover {
+    background-color: #1a252f !important;
+    color: white !important;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* 查看页面返回按钮 */
+.btn-back, .btn-back:hover {
+    background-color: #2c3e50 !important;
+}
+
+/* 查看页面的提交代码按钮 */
+.btn-submit-code, .btn-submit-code:hover {
+    background-color: #2c3e50 !important;
+}
+
+/* 用户管理页面的添加新用户按钮 */
+.btn-add-user, .btn-add-user:hover {
+    background-color: #2c3e50 !important;
+}
+
+/* 难度标签颜色 */
+.badge-info {
+    background-color: #2c3e50 !important;
+}
+
+/* 用户管理输入框样式 */
+.form-control {
+    border: 2px solid #e9ecef;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    color: #212529 !important;
+}
+
+.form-control:focus {
+    border-color: #6c757d;
+    box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0.15);
+    outline: none;
+    color: #212529 !important;
+    background-color: #fff;
+}
+
+/* 确保所有输入框文本颜色为黑色 */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+textarea,
+select {
+    color: #212529 !important;
+}
+
+/* 确保禁用状态的输入框文本颜色也为黑色 */
+.form-control:disabled,
+.form-control[readonly] {
+    background-color: #e9ecef;
+    color: #212529 !important;
+}
+
+/* 确保placeholder文本颜色为灰色 */
+.form-control::placeholder {
+    color: #adb5bd !important;
+    font-size: 14px;
+}
+
+/* 用户管理表单样式 */
+.user-form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.user-form .form-group {
+    margin-bottom: 20px;
+}
+
+.user-form label {
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 8px;
+    display: block;
+}
+
+/* 模态框样式优化 */
+.modal-content {
+    border-radius: 8px;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.2);
+}
+
+.modal-header {
+    background-color: #2c3e50;
+    color: white;
+    border-radius: 8px 8px 0 0;
+    padding: 15px 20px;
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+.modal-footer {
+    padding: 15px 20px;
+    border-top: 1px solid #e9ecef;
+}
+
+/* 表单验证样式 */
+.form-control.is-invalid {
+    border-color: #dc3545;
+    background-image: none;
+}
+
+.form-control.is-valid {
+    border-color: #28a745;
+    background-image: none;
+}
+
+/* 必填字段标记 */
+.required-field::after {
+    content: "*";
+    color: #dc3545;
+    margin-left: 4px;
+}
+
+/* 下拉选择框样式 */
+.form-control select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%232c3e50' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    padding-right: 30px;
+}
+
+/* 编译结果模态框样式 */
+#resultModal .modal-content {
+    color: #212529 !important;
+}
+
+#resultModal .modal-header {
+    background-color: #2c3e50;
+    color: white !important;
+}
+
+#resultModal .modal-body {
+    color: #212529 !important;
+}
+
+#resultModal .modal-footer {
+    border-top: 1px solid #e9ecef;
+}
+
+/* 确保编译结果中的所有文本都是黑色 */
+#resultModal pre,
+#resultModal code,
+#resultModal .text-success,
+#resultModal .text-danger,
+#resultModal .text-warning {
+    color: #212529 !important;
+}

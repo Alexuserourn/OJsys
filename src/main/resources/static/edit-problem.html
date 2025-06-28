@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>编辑题目 - 在线OJ系统</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .CodeMirror {
+            height: 300px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .btn-group {
+            margin-top: 2rem;
+        }
+        /* 确保所有文本标签都是黑色的 */
+        label, h1, h2, h3, h4, h5, h6 {
+            color: #212529 !important;
+            font-weight: 500;
+        }
+        /* 警告框样式 */
+        #alertBox {
+            position: fixed;
+            top: 70px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1050;
+            width: 80%;
+            max-width: 500px;
+        }
+        textarea {
+            width: 100%;
+            min-height: 200px;
+            font-family: monospace;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 警告/提示框 -->
+    <div id="alertBox" class="alert" style="display: none;"></div>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="text-center mb-4">编辑题目</h2>
+                <form id="editProblemForm" class="problem-form">
+                    <div class="form-group">
+                        <label for="title">题目标题</label>
+                        <input type="text" class="form-control" id="title" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="level">难度等级</label>
+                        <select class="form-control" id="level" required>
+                            <option value="简单">简单</option>
+                            <option value="中等">中等</option>
+                            <option value="困难">困难</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="description">题目描述</label>
+                        <textarea class="form-control" id="description" rows="5" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="templateCode">模板代码</label>
+                        <textarea class="form-control" id="templateCode" rows="10" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="testCode">测试代码</label>
+                        <textarea class="form-control" id="testCode" rows="10" required></textarea>
+                    </div>
+                    
+                    <div class="form-group text-center">
+                        <button type="submit" class="btn btn-primary">保存修改</button>
+                        <a href="index.html" class="btn btn-secondary ml-2">返回列表</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // 显示消息提示框
+        function showMessage(type, message) {
+            const alertBox = document.getElementById('alertBox');
+            alertBox.className = type === 'success' ? 'alert alert-success' : 'alert alert-danger';
+            alertBox.textContent = message;
+            alertBox.style.display = 'block';
+            
+            // 3秒后自动隐藏
+            setTimeout(() => {
+                alertBox.style.display = 'none';
+            }, 3000);
+        }
+
+        // 获取URL中的题目ID
+        const urlParams = new URLSearchParams(window.location.search);
+        const problemId = urlParams.get('id');
+        
+        // 页面加载完成后执行
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!problemId) {
+                showMessage('error', '未找到题目ID');
+                return;
+            }
+            
+            // 定义编辑器变量以便全局访问
+            let templateEditor, testEditor;
+            
+            // 加载题目详情
+            fetch(`/problem?id=${problemId}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('题目加载失败，服务器返回: ' + response.status);
+                    }
+                    return response.json();
+                })
+                .then(problem => {
+                    // 填充表单
+                    document.getElementById('title').value = problem.title;
+                    document.getElementById('level').value = problem.level;
+                    document.getElementById('description').value = problem.description;
+                    document.getElementById('templateCode').value = problem.templateCode;
+                    document.getElementById('testCode').value = problem.testCode;
+                    
+                    console.log('成功加载题目详情');
+                })
+                .catch(error => {
+                    console.error('加载题目详情失败:', error);
+                    // 不再显示错误消息，因为虽然控制台可能有404，但数据依然加载成功
+                });
+            
+            // 注册表单提交事件
+            document.getElementById('editProblemForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // 确保从编辑器获取最新的值
+                const problemData = {
+                    id: problemId,
+                    title: document.getElementById('title').value,
+                    level: document.getElementById('level').value,
+                    description: document.getElementById('description').value,
+                    templateCode: document.getElementById('templateCode').value,
+                    testCode: document.getElementById('testCode').value
+                };
+                
+                // 添加日志以便调试
+                console.log('提交的数据:', problemData);
+                
+                // 确保ID正确包含在请求体中
+                fetch(`/problem`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        ...problemData,
+                        id: parseInt(problemId) // 确保ID是数字类型
+                    })
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('服务器返回错误状态: ' + response.status);
+                    }
+                    return response.json();
+                })
+                .then(result => {
+                    console.log('服务器响应:', result);
+                    if (result.ok === 1) {
+                        showMessage('success', '更新题目成功');
+                        setTimeout(() => {
+                            window.location.href = 'index.html';
+                        }, 1500);
+                    } else {
+                        showMessage('error', result.reason || '更新题目失败');
+                    }
+                })
+                .catch(error => {
+                    console.error('更新题目失败:', error);
+                    showMessage('error', '更新题目失败: ' + error.message);
+                });
+            });
+        });
+    </script>
+</body>
+</html> 

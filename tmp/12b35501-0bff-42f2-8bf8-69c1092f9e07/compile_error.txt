@@ -1,0 +1,4 @@
+.\tmp\12b35501-0bff-42f2-8bf8-69c1092f9e07\Test.java:6: 错误: 需要';'
+                    return new int[] {i, j}
+                                           ^
+1 个错误

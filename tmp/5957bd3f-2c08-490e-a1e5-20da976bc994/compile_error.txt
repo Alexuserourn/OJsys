@@ -1,0 +1,5 @@
+.\tmp\5957bd3f-2c08-490e-a1e5-20da976bc994\Solution.java:7: ����: �ڲ���Solution.Test�еľ�̬�����Ƿ�
+    public static void main(String[] args) {
+                       ^
+  ���η� 'static' �������ڳ�������������ʹ��
+1 ������

@@ -1,0 +1,4 @@
+.\tmp\6dac64a8-83a2-42bf-9253-30b5bb138dc7\Test.java:1: 错误: 需要class, interface或enum
+pubilc class Solution {
+^
+1 个错误

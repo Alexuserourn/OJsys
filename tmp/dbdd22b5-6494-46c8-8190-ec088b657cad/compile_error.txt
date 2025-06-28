@@ -1,0 +1,31 @@
+.\tmp\dbdd22b5-6494-46c8-8190-ec088b657cad\Test.java:1: 错误: 需要class, interface或enum
+clas Solution {
+^
+.\tmp\dbdd22b5-6494-46c8-8190-ec088b657cad\Test.java:2: 错误: 需要class, interface或enum
+    public int[] twoSum(int[] nums, int target) {
+           ^
+.\tmp\dbdd22b5-6494-46c8-8190-ec088b657cad\Test.java:4: 错误: 需要class, interface或enum
+        for (int i = 0; i < n; ++i) {
+        ^
+.\tmp\dbdd22b5-6494-46c8-8190-ec088b657cad\Test.java:4: 错误: 需要class, interface或enum
+        for (int i = 0; i < n; ++i) {
+                        ^
+.\tmp\dbdd22b5-6494-46c8-8190-ec088b657cad\Test.java:4: 错误: 需要class, interface或enum
+        for (int i = 0; i < n; ++i) {
+                               ^
+.\tmp\dbdd22b5-6494-46c8-8190-ec088b657cad\Test.java:5: 错误: 需要class, interface或enum
+            for (int j = i + 1; j < n; ++j) {
+                                ^
+.\tmp\dbdd22b5-6494-46c8-8190-ec088b657cad\Test.java:5: 错误: 需要class, interface或enum
+            for (int j = i + 1; j < n; ++j) {
+                                       ^
+.\tmp\dbdd22b5-6494-46c8-8190-ec088b657cad\Test.java:8: 错误: 需要class, interface或enum
+                }
+                ^
+.\tmp\dbdd22b5-6494-46c8-8190-ec088b657cad\Test.java:12: 错误: 需要class, interface或enum
+    }
+    ^
+.\tmp\dbdd22b5-6494-46c8-8190-ec088b657cad\Test.java:26: 错误: 需要class, interface或enum
+}}
+ ^
+10 个错误
