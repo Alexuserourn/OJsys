@@ -196,6 +196,30 @@
         #userInfo, #userInfo span {
             color: white !important;
         }
+        /* 编译结果样式 */
+        #compileResult {
+            background-color: #ffffff !important;
+            color: #212529 !important;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 15px;
+        }
+        
+        /* 确保所有模态框使用白色背景 */
+        .modal-content {
+            background-color: #ffffff !important;
+        }
+        .modal-header {
+            background-color: #ffffff !important;
+            border-bottom: 1px solid #dee2e6;
+        }
+        .modal-body {
+            background-color: #ffffff !important;
+        }
+        .modal-footer {
+            background-color: #ffffff !important;
+            border-top: 1px solid #dee2e6;
+        }
     </style>
 </head>
 
@@ -327,17 +351,17 @@
 <!-- 编译结果模态框 -->
 <div class="modal fade" id="resultModal" tabindex="-1" aria-labelledby="resultModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="resultModalLabel">编译结果</h5>
+        <div class="modal-content" style="background-color: #ffffff;">
+            <div class="modal-header" style="background-color: #ffffff; border-bottom: 1px solid #dee2e6;">
+                <h5 class="modal-title" id="resultModalLabel" style="color: #212529;">编译结果</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <pre id="compileResult"></pre>
+            <div class="modal-body" style="background-color: #ffffff;">
+                <pre id="compileResult" style="background-color: #ffffff; color: #212529; border: 1px solid #dee2e6; border-radius: 4px; padding: 15px;"></pre>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer" style="background-color: #ffffff; border-top: 1px solid #dee2e6;">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
             </div>
         </div>
@@ -519,17 +543,17 @@
 <!-- 提交代码查看模态框 -->
 <div class="modal fade" id="codeModal" tabindex="-1" aria-labelledby="codeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="codeModalLabel">提交代码</h5>
+        <div class="modal-content" style="background-color: #ffffff;">
+            <div class="modal-header" style="background-color: #ffffff; border-bottom: 1px solid #dee2e6;">
+                <h5 class="modal-title" id="codeModalLabel" style="color: #212529;">提交代码</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <pre id="submittedCode" class="border p-3" style="max-height: 400px; overflow-y: auto;"></pre>
+            <div class="modal-body" style="background-color: #ffffff;">
+                <pre id="submittedCode" class="border p-3" style="max-height: 400px; overflow-y: auto; background-color: #ffffff; color: #212529;"></pre>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer" style="background-color: #ffffff; border-top: 1px solid #dee2e6;">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
             </div>
         </div>
