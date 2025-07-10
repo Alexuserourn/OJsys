@@ -1,0 +1,6 @@
+.\tmp\64672ecb-c0db-4df3-b4da-53aa86bf8951\Test.java:4: 错误: 找不到符号
+sleep(1000);
+^
+  符号:   方法 sleep(int)
+  位置: 类 Solution
+1 个错误

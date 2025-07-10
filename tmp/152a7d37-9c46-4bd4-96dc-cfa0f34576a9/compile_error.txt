@@ -1,0 +1,4 @@
+.\tmp\152a7d37-9c46-4bd4-96dc-cfa0f34576a9\Test.java:11: 错误: 需要';'
+        return new int[0]
+                         ^
+1 个错误

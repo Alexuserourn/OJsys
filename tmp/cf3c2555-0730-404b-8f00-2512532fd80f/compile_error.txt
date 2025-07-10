@@ -1,0 +1,25 @@
+.\tmp\cf3c2555-0730-404b-8f00-2512532fd80f\Test.java:4: 错误: 不是语句
+retern new int[] {nums[0],nums[1]}
+^
+.\tmp\cf3c2555-0730-404b-8f00-2512532fd80f\Test.java:4: 错误: 需要';'
+retern new int[] {nums[0],nums[1]}
+      ^
+.\tmp\cf3c2555-0730-404b-8f00-2512532fd80f\Test.java:4: 错误: 不是语句
+retern new int[] {nums[0],nums[1]}
+              ^
+.\tmp\cf3c2555-0730-404b-8f00-2512532fd80f\Test.java:4: 错误: 需要';'
+retern new int[] {nums[0],nums[1]}
+                ^
+.\tmp\cf3c2555-0730-404b-8f00-2512532fd80f\Test.java:4: 错误: 不是语句
+retern new int[] {nums[0],nums[1]}
+                      ^
+.\tmp\cf3c2555-0730-404b-8f00-2512532fd80f\Test.java:4: 错误: 需要';'
+retern new int[] {nums[0],nums[1]}
+                         ^
+.\tmp\cf3c2555-0730-404b-8f00-2512532fd80f\Test.java:4: 错误: 不是语句
+retern new int[] {nums[0],nums[1]}
+                              ^
+.\tmp\cf3c2555-0730-404b-8f00-2512532fd80f\Test.java:4: 错误: 需要';'
+retern new int[] {nums[0],nums[1]}
+                                 ^
+8 个错误

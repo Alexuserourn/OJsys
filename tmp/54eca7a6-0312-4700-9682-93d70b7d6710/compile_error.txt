@@ -1,0 +1,6 @@
+.\tmp\54eca7a6-0312-4700-9682-93d70b7d6710\Test.java:11: 错误: 找不到符号
+        int[] result = solution.twoSum(nums, target);
+                               ^
+  符号:   方法 twoSum(int[],int)
+  位置: 类型为Solution的变量 solution
+1 个错误
